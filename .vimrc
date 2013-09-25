@@ -2,6 +2,7 @@
 " General
 """""""""""""""""""
 set history=700
+set number
 
 filetype plugin on
 filetype indent on
@@ -29,6 +30,7 @@ set expandtab
 set shiftwidth=4
 set tabstop=4
 set smarttab
+syntax enable
 
 set lbr
 set tw=500
@@ -36,5 +38,10 @@ set tw=500
 set ai "Auto Indent
 set si "Smart Indent
 set wrap "Wrap Lines
+
+"to get syntax coloring for .t files
+augroup filetypedetect
+    au! BufRead,BufNewFile *.t setfiletype perl
+augroup END
 
 
