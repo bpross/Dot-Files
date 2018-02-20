@@ -28,3 +28,4 @@ pyclean () {
     find . -name "*.pyc" -exec rm -rf {} \;
     find . -name "__pycache__" -exec rm -rf {} \;
 }
+complete -W "\`grep -oE '^[a-zA-Z0-9_-]+:([^=]|$)' Makefile | sed 's/[^a-zA-Z0-9_-]*$//'\`" make
