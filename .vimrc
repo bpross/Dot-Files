@@ -13,6 +13,12 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'stephpy/vim-php-cs-fixer'
+Plugin 'fatih/vim-go'
+Plugin 'integralist/vim-mypy'
+Plugin 'Vimjas/vim-python-pep8-indent'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -84,14 +90,19 @@ set ai "Auto Indent
 set si "Smart Indent
 set wrap "Wrap Lines
 
+" PHP Config
+let g:php_cs_fixer_rules = "@PSR2"
+let g:php_cs_fixer_php_path = "php"
+let g:php_cs_fixer_enable_default_mapping = 1
+let g:php_cs_fixer_dry_run = 0
+
 "to get syntax coloring for .t files
 augroup filetypedetect
     au! BufRead,BufNewFile *.t setfiletype perl
 augroup END
 
-execute pathogen#infect()
-
 "Syntastic config
+let g:syntastic_mode_map = { 'passive_filetypes': ['php'] }
 
 "YCM config
 let g:ycm_autoclose_preview_window_after_completion=1
