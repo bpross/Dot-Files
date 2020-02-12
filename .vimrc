@@ -1,5 +1,5 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype  on                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -17,8 +17,10 @@ Plugin 'scrooloose/syntastic'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'fatih/vim-go'
-Plugin 'integralist/vim-mypy'
 Plugin 'Vimjas/vim-python-pep8-indent'
+Plugin 'tpope/vim-commentary'
+Plugin 'posva/vim-vue'
+Plugin 'tmsvg/pear-tree'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -53,6 +55,8 @@ filetype plugin indent on    " required
 """""""""""""""""""
 set history=700
 set number
+syntax enable
+colorscheme desert 
 
 filetype plugin on
 filetype indent on
@@ -65,6 +69,16 @@ set backspace=2 " make backspace work like most other programs
 
 "Fast Saving
 nmap <leader>w :w!<cr>
+
+" Spell check
+set spelllang=en
+set spellfile=$HOME/.spell/en.utf-8.add
+highlight SpellBad     gui=undercurl guisp=red term=undercurl cterm=undercurl
+
+" Solarized
+" undercurl support
+let &t_Cs = "\e[4:3m"
+let &t_Ce = "\e[4:0m"
 
 """"""""""""""""""""
 " User Interface
@@ -81,7 +95,6 @@ set expandtab
 set shiftwidth=4
 set tabstop=4
 set smarttab
-syntax enable
 
 set lbr
 set tw=500
@@ -90,16 +103,25 @@ set ai "Auto Indent
 set si "Smart Indent
 set wrap "Wrap Lines
 
+"Remove trailing whitespace
+nnoremap <leader>T :%s/\s\+$//e<CR>
+
 " PHP Config
 let g:php_cs_fixer_rules = "@PSR2"
 let g:php_cs_fixer_php_path = "php"
 let g:php_cs_fixer_enable_default_mapping = 1
 let g:php_cs_fixer_dry_run = 0
 
+" Python Config
+au BufRead,BufNewFile *.py set expandtab
+
 "to get syntax coloring for .t files
 augroup filetypedetect
     au! BufRead,BufNewFile *.t setfiletype perl
 augroup END
+
+"to get syntax coloring for .ps1 files
+au BufNewFile,BufRead *.ps1,*.psc1 setf ps1
 
 "Syntastic config
 let g:syntastic_mode_map = { 'passive_filetypes': ['php'] }
@@ -116,3 +138,8 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "NerdTree config
  map <Leader>n <plug>NERDTreeTabsToggle<CR>
+
+ autocmd FileType *.js BufWritePre <buffer> %s/\s\+$//e
+ autocmd BufNewFile,BufRead *.vue set filetype=vue
+ let g:ctrlp_map = '<c-p>'
+ let g:ctrlp_cmd = 'CtrlP'
