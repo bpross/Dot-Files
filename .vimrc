@@ -3,41 +3,47 @@ filetype  on                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'shawncplus/phpcomplete.vim'
-Plugin 'stephpy/vim-php-cs-fixer'
-Plugin 'fatih/vim-go'
-Plugin 'Vimjas/vim-python-pep8-indent'
-Plugin 'tpope/vim-commentary'
-Plugin 'posva/vim-vue'
-Plugin 'tmsvg/pear-tree'
+call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'VundleVim/Vundle.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/syntastic'
+Plug 'shawncplus/phpcomplete.vim'
+Plug 'stephpy/vim-php-cs-fixer'
+Plug 'fatih/vim-go'
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'tpope/vim-commentary'
+Plug 'posva/vim-vue'
+Plug 'tmsvg/pear-tree'
+Plug 'pangloss/vim-javascript'    " JavaScript support
+Plug 'leafgarland/typescript-vim' " TypeScript syntax
+Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
+Plug 'jparise/vim-graphql'        " GraphQL syntax
+Plug 'doums/darcula'
+Plug 'lifepillar/vim-solarized8'
+Plug 'morhetz/gruvbox'
+Plug 'elixir-editors/vim-elixir'
+Plug 'ngmy/vim-rubocop'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-rails'
+Plug 'ycm-core/YouCompleteMe'
 " The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
+Plug 'git://git.wincent.com/command-t.git'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -56,7 +62,10 @@ filetype plugin indent on    " required
 set history=700
 set number
 syntax enable
-colorscheme desert 
+set background=dark
+colorscheme solarized8
+set termguicolors
+let g:airline_powerline_fonts = 1
 
 filetype plugin on
 filetype indent on
@@ -95,6 +104,7 @@ set expandtab
 set shiftwidth=4
 set tabstop=4
 set smarttab
+set cindent
 
 set lbr
 set tw=500
@@ -114,6 +124,12 @@ let g:php_cs_fixer_dry_run = 0
 
 " Python Config
 au BufRead,BufNewFile *.py set expandtab
+
+" Ruby Config
+runtime macros/matchit.vim
+
+" Yaml Config
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 "to get syntax coloring for .t files
 augroup filetypedetect
@@ -140,6 +156,14 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
  map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
  autocmd FileType *.js BufWritePre <buffer> %s/\s\+$//e
+ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+ autocmd FileType json setlocal shiftwidth=2 tabstop=2
  autocmd BufNewFile,BufRead *.vue set filetype=vue
  let g:ctrlp_map = '<c-p>'
  let g:ctrlp_cmd = 'CtrlP'
+ set rtp+=/usr/local/opt/fzf
+
+ """""""""""""""""""" Some plugin overrides """""""""""""""""""""""
+ let g:syntastic_javascript_checkers=['eslint']
+ " let g:jsx_ext_required = 0
+ let g:vimrubocop_config = '/Users/benross/src/procore/.rubocop.yml'
