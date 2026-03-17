@@ -1,0 +1,9 @@
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+[user]
+	name = Benjamin Ross
+	email = ben.ross@moov.io
+[push]
+	autoSetupRemote = true
+[pull]
+	rebase = true

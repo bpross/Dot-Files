@@ -1,0 +1,87 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "Bash(go test *)",
+      "Bash(go build *)",
+      "Bash(go vet *)",
+      "Bash(go mod *)",
+      "Bash(go run *)",
+      "Bash(go generate *)",
+      "Bash(go install *)",
+      "Bash(golangci-lint *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git fetch *)",
+      "Bash(git branch *)",
+      "Bash(git checkout *)",
+      "Bash(git stash *)",
+      "Bash(make *)",
+      "Bash(grep *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(find *)",
+      "Bash(wc *)",
+      "Bash(fd *)",
+      "Bash(rg *)",
+      "Bash(ast-grep *)",
+      "Bash(fzf *)",
+      "Bash(jq *)",
+      "Bash(yq *)",
+      "Bash(git push *)",
+      "mcp__linear-server__get_issue",
+      "mcp__linear-server__list_issues",
+      "mcp__linear-server__get_project",
+      "mcp__linear-server__list_projects",
+      "mcp__linear-server__save_issue",
+      "mcp__linear-server__save_comment",
+      "mcp__linear-server__get_team",
+      "mcp__linear-server__list_teams",
+      "mcp__codebase-memory-mcp__list_projects",
+      "mcp__codebase-memory-mcp__index_repository",
+      "mcp__codebase-memory-mcp__index_status",
+      "mcp__codebase-memory-mcp__detect_changes",
+      "mcp__codebase-memory-mcp__get_architecture",
+      "mcp__codebase-memory-mcp__get_graph_schema",
+      "mcp__codebase-memory-mcp__search_graph",
+      "mcp__codebase-memory-mcp__query_graph",
+      "mcp__codebase-memory-mcp__search_code",
+      "mcp__codebase-memory-mcp__get_code_snippet",
+      "mcp__codebase-memory-mcp__trace_call_path",
+      "mcp__codebase-memory-mcp__manage_adr"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(git push --force *)"
+    ],
+    "ask": [
+      "Bash(git push --force *)",
+      "Bash(git rebase *)",
+      "Bash(git reset *)",
+      "Bash(git merge *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": []
+  },
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true,
+    "Notion@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true
+  },
+  "mcpServers": {
+    "codebase-memory-mcp": {
+      "type": "stdio",
+      "command": "$HOME/github.com/bpross/codebase-memory-mcp"
+    }
+  }
+}

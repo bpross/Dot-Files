@@ -1,0 +1,21 @@
+alias la='ls -a'
+
+# Git
+alias ga='git add'
+alias gp='git push'
+alias gm='git commit -m'
+alias gme='git commit --allow-empty -m'
+alias gs='git status'
+alias gpl='git pull'
+alias gpu='git push'
+alias gb='git branch'
+alias gbr='git branch -r'
+alias gco='git checkout'
+alias gpuo='gpu origin'
+alias nuke_branches='git branch | grep -v "master" | xargs git branch -D'
+
+# Docker
+alias dc='docker compose'
+
+# Grep
+alias gogrep='grep --exclude-dir "vendor"'

@@ -1,0 +1,23 @@
+# Secrets — never commit
+.secrets
+
+# macOS
+.DS_Store
+
+# Zsh state files (machine-specific, auto-generated)
+.zsh_history
+.zcompdump*
+.zsh_sessions/
+
+# Oh My Zsh (installed separately, not committed)
+.oh-my-zsh/
+
+# Vim state
+.viminfo
+.viminfo.tmp
+
+# Neovim lazy lock (optional — pin if you want reproducible plugin versions)
+# config/nvim/lazy-lock.json
+
+# LunarVim — installed separately
+config/lvim/pack/
