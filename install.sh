@@ -45,6 +45,8 @@ info "Linking Claude Code config..."
 mkdir -p "$HOME/.claude"
 symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
 symlink "$DOTFILES_DIR/claude/mcp.json"      "$HOME/.claude/mcp.json"
+symlink "$DOTFILES_DIR/claude/CLAUDE.md"     "$HOME/.claude/CLAUDE.md"
+symlink "$DOTFILES_DIR/claude/skills"        "$HOME/.claude/skills"
 
 # ── Secrets ───────────────────────────────────────────────────────────────────
 if [ ! -f "$HOME/.secrets" ]; then
