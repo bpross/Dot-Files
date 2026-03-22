@@ -102,6 +102,57 @@ else
   info "NVM already installed."
 fi
 
+# ── Go tools ──────────────────────────────────────────────────────────────────
+if command -v go &>/dev/null; then
+  info "Installing Go tools..."
+  export GOPATH="${GOPATH:-$HOME/go}"
+  export GOPRIVATE="github.com/moov-io/*,github.com/moovfinancial/*"
+
+  GO_PUBLIC_TOOLS=(
+    "golang.org/x/tools/cmd/callgraph@latest"
+    "github.com/go-delve/delve/cmd/dlv@latest"
+    "github.com/davidrjenni/reftools/cmd/fillswitch@latest"
+    "github.com/onsi/ginkgo/v2/ginkgo@latest"
+    "github.com/abice/go-enum@latest"
+    "mvdan.cc/gofumpt@latest"
+    "golang.org/x/tools/cmd/goimports@latest"
+    "github.com/twpayne/go-jsonstruct/v3/cmd/gojsonstruct@latest"
+    "github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest"
+    "github.com/segmentio/golines@latest"
+    "github.com/fatih/gomodifytags@latest"
+    "github.com/abenz1267/gomvp@latest"
+    "golang.org/x/tools/cmd/gonew@latest"
+    "golang.org/x/tools/gopls@latest"
+    "golang.org/x/tools/cmd/gorename@latest"
+    "github.com/cweill/gotests/gotests@latest"
+    "gotest.tools/gotestsum@latest"
+    "golang.org/x/vuln/cmd/govulncheck@latest"
+    "github.com/koron/iferr@latest"
+    "github.com/josharian/impl@latest"
+    "github.com/tmc/json-to-struct@latest"
+    "github.com/vektra/mockery/v2@latest"
+    "go.uber.org/mock/mockgen@latest"
+    "github.com/kyoh86/richgo@latest"
+    "github.com/adamdecaf/xmlencoderclose@latest"
+    "github.com/DeusData/codebase-memory-mcp/cmd/codebase-memory-mcp@latest"
+  )
+
+  GO_PRIVATE_TOOLS=(
+    "github.com/moovfinancial/bumper/cmd/bump@latest"
+    "github.com/moovfinancial/nullscan@latest"
+  )
+
+  for pkg in "${GO_PUBLIC_TOOLS[@]}"; do
+    go install "$pkg" && success "go install $pkg" || warn "Failed: go install $pkg"
+  done
+
+  for pkg in "${GO_PRIVATE_TOOLS[@]}"; do
+    go install "$pkg" && success "go install $pkg" || warn "Skipped (needs SSH/auth): $pkg"
+  done
+else
+  warn "Go not found — skipping Go tools. Re-run after installing Go."
+fi
+
 # ── Google Cloud SDK ──────────────────────────────────────────────────────────
 if ! command -v gcloud &>/dev/null; then
   warn "Google Cloud SDK not installed. Download from: https://cloud.google.com/sdk/docs/install"
