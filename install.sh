@@ -47,6 +47,10 @@ symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
 symlink "$DOTFILES_DIR/claude/mcp.json"      "$HOME/.claude/mcp.json"
 symlink "$DOTFILES_DIR/claude/CLAUDE.md"     "$HOME/.claude/CLAUDE.md"
 symlink "$DOTFILES_DIR/claude/skills"        "$HOME/.claude/skills"
+mkdir -p "$HOME/.claude/hooks"
+for hook in "$DOTFILES_DIR"/claude/hooks/*.sh; do
+  symlink "$hook" "$HOME/.claude/hooks/$(basename "$hook")"
+done
 
 # ── Secrets ───────────────────────────────────────────────────────────────────
 if [ ! -f "$HOME/.secrets" ]; then

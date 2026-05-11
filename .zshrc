@@ -60,3 +60,8 @@ export ENABLE_LSP_TOOLS=1
 
 # Load secrets (API keys, tokens — not committed to git)
 [ -f ~/.secrets ] && source ~/.secrets
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/benross/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions

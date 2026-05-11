@@ -1,3 +1,8 @@
+---
+name: write-tests-skill
+description: Write tests for requested code changes and validate affected packages.
+---
+
 # Write Tests Skill
 
 1. Explore the codebase to understand existing test patterns

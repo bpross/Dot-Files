@@ -80,18 +80,16 @@
       "Bash(git merge *)"
     ]
   },
+  "model": "opus[1m]",
   "hooks": {
     "PreToolUse": []
   },
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true,
     "Notion@claude-plugins-official": true,
-    "ralph-loop@claude-plugins-official": true
+    "ralph-loop@claude-plugins-official": true,
+    "slack@claude-plugins-official": true
   },
-  "mcpServers": {
-    "codebase-memory-mcp": {
-      "type": "stdio",
-      "command": "$HOME/github.com/bpross/codebase-memory-mcp"
-    }
-  }
+  "effortLevel": "xhigh",
+  "mcpServers": {}
 }

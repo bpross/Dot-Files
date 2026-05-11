@@ -1,11 +1,4 @@
 {
   "mcpServers": {
-    "codebase-memory-mcp": {
-      "type": "stdio",
-      "command": "$HOME/github.com/bpross/codebase-memory-mcp",
-      "env": {
-        "CBM_NO_AUTO_UPDATE": "1"
-      }
-    }
   }
 }
